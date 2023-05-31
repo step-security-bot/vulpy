@@ -1,8 +1,12 @@
 name: scorecard-dependency-analysis
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
 permissions:
   pull-requests: write
 
@@ -17,7 +21,6 @@ jobs:
       GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
       GITHUB_SHA: ${{ github.sha }}
       GITHUB_ACTOR: ${{ github.actor }}
-
 
     steps:
       - name: Checkout code
