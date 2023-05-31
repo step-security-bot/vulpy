@@ -23,8 +23,13 @@ jobs:
       GITHUB_ACTOR: ${{ github.actor }}
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
+        with:
+          egress-policy: audit
+
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
         with:
           persist-credentials: false
       - name: Print environment variables
@@ -37,4 +42,4 @@ jobs:
         shell: bash
 
       - name: Run analysis
-        uses: ossf/scorecard-dependencyanalysis@dependency-analysis
+        uses: ossf/scorecard-dependencyanalysis@c647ca87e668983c56bba5dae038d63394f4ed0e # dependency-analysis
